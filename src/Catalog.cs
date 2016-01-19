@@ -1,13 +1,15 @@
-using System.Threading;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Consul
 {
   public class Catalog
   {
 
-    public async Task Register(Node node)
+    public Task Register(Node node)
     {
-
+      return new Task(() => {});
     }
 
     public void RegisterSync(Node node)
@@ -15,9 +17,9 @@ namespace Consul
 
     }
 
-    public async Task Register(Service service)
+    public Task Register(Service service)
     {
-
+      return new Task(() => {});
     }
 
     public void RegisterSync(Service service)
@@ -25,9 +27,9 @@ namespace Consul
 
     }
 
-    public async Task Register(Check check)
+    public Task Register(Check check)
     {
-
+      return new Task(() => {});
     }
 
     public void RegisterSync(Check check)
@@ -35,9 +37,9 @@ namespace Consul
 
     }
 
-    public async Task Deregister(Node node)
+    public Task Deregister(Node node)
     {
-
+      return new Task(() => {});
     }
 
     public void DeregisterSync(Node node)
@@ -45,9 +47,9 @@ namespace Consul
 
     }
 
-    public async Task Deregister(Service service)
+    public Task Deregister(Service service)
     {
-
+      return new Task(() => {});
     }
 
     public void DeregisterSync(Service service)
@@ -55,9 +57,9 @@ namespace Consul
 
     }
 
-    public async Task Deregister(Check check)
+    public Task Deregister(Check check)
     {
-
+      return new Task(() => {});
     }
 
     public void DeregisterSync(Check check)
@@ -65,55 +67,54 @@ namespace Consul
 
     }
 
-    public async Task<IEnumerable<Datacenter>> Datacenters()
+    public Task<IEnumerable<Datacenter>> Datacenters()
     {
-
+      return new Task<IEnumerable<Datacenter>>(() => {return Enumerable.Empty<Datacenter>();});
     }
 
     public IEnumerable<Datacenter> DatacentersSync()
     {
-
+      return Enumerable.Empty<Datacenter>();
     }
 
-    public async Task<Nodes> Node(string nodeName)
+    public Task<Node> Node(string nodeName)
     {
-
+      return new Task<Node>(() => {return null;});
     }
 
     public Node NodeSync(string nodeName)
     {
-
+      return null;
     }
 
-    public async Task<IEnumerable<Node>> Nodes()
+    public Task<IEnumerable<Node>> Nodes()
     {
-
+      return new Task<IEnumerable<Node>>(() => {return Enumerable.Empty<Node>();});
     }
 
     public IEnumerable<Node> NodesSync()
     {
-
+      return null;
     }
 
-    public async Task<Service> Service(string serviceName)
+    public Task<Service> Service(string serviceName)
     {
-
+      return new Task<Service>(() => {return null;});
     }
 
     public Service ServiceSync(string serviceName)
     {
-
+      return null;
     }
 
-    public async Task<IEnumerable<Service>> Services()
+    public Task<IEnumerable<Service>> Services()
     {
-
+      return new Task<IEnumerable<Service>>(() => {return Enumerable.Empty<Service>();});
     }
 
     public IEnumerable<Service> ServicesSync()
     {
-
+      return Enumerable.Empty<Service>();
     }
-
   }
 }
