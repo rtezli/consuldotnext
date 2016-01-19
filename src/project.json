@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0-*",
+  "description": "consuldotnet clone for DNX",
+  "authors": ["Robert Tezli <robert@pixills.com>", "Andrei Cristof"],
+  "tags": ["consul", ".Net", "DNX"],
+  "projectUrl": "https://github.com/rtezli/consuldotnext",
+  "licenseUrl": "https://github.com/rtezli/consuldotnext/blob/master/LICENSE",
+  "tooling": {
+    "defaultNamespace": "consuldotnext"
+  },
+  "configurations": {
+    "debug": {
+      "compilationOptions": {
+        "define": [
+          "DEBUG",
+          "TRACE"
+        ],
+        "optimize": false
+      }
+    },
+    "release": {
+      "compilationOptions": {
+        "define": [
+          "RELEASE"
+        ],
+        "optimize": true
+      }
+    }
+  },
+  "frameworks": {
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}
