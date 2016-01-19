@@ -6,7 +6,7 @@
   "projectUrl": "https://github.com/rtezli/consuldotnext",
   "licenseUrl": "https://github.com/rtezli/consuldotnext/blob/master/LICENSE",
   "tooling": {
-    "defaultNamespace": "consuldotnext"
+    "defaultNamespace": "Consul"
   },
   "configurations": {
     "debug": {
