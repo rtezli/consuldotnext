@@ -2,16 +2,19 @@
   "name": "consuldotnext",
   "version": "0.0.0",
   "description": "Consuldotnet implementation clone for DNX",
-  "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "tests",
+    "src": "src"
   },
   "dependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-run": "^0.5.2",
+    "load-grunt-tasks": "^3.4.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "buid": "grunt"
   },
   "repository": {
     "type": "git",
