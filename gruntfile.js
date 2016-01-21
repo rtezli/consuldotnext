@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     watch: {
-      files: ['src/**/*.*'],
+      files: ['consuldotnext/**/*.*'],
       tasks: ['build']
     },
     run: {
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
           exec: 'cd src && dnu restore',
      },
      build: {
-         exec: 'dnu build ./src/project.json --out ./bin',
+         exec: 'dnu build ./consuldotnext/project.json --out ./bin',
      }
    }
   });
