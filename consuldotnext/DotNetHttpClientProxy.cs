@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace Consul
+namespace Pixills.Consul.Client
 {
   public class DotNetHttpClientProxy : IHttpClient
   {
@@ -30,14 +30,12 @@ namespace Consul
 
       public Task Put(string url, object obj){
           return new Task(async () => {
-              var contentString =  JsonConvert.SerializeObject(obj);
-              await _client.PutAsync(url, new StringContent(contentString));
+              await _client.PutAsync(url, new StringContent(Serializer.Serialize(obj)));
             });
       }
 
       public void PutSync(string url, object obj){
-          var contentString =  JsonConvert.SerializeObject(obj);
-          var response = _client.PutAsync(url, new StringContent(contentString)).Result;
+          var response = _client.PutAsync(url, new StringContent(Serializer.Serialize(obj))).Result;
       }
 
       public void Dispose(){

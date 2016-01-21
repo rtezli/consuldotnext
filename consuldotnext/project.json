@@ -1,6 +1,6 @@
 {
   "version": "1.0.0-*",
-  "description": "consuldotnet clone for DNX",
+  "description": "DNX consul client",
   "authors": [
     "Robert Tezli <robert@pixills.com>",
     "Andrei Cristof"

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Consul
+namespace Pixills.Consul.Client
 {
   public class Catalog
   {

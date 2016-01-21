@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Consul
+namespace Pixills.Consul.Client
 {
   public interface IHttpClient : IDisposable
   {

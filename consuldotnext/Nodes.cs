@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Consul
+namespace Pixills.Consul.Client
 {
   public class Nodes
   {
