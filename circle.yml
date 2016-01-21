@@ -1,14 +1,5 @@
 dependencies:
   override:
-    - grunt build:debug
 test:
   pre:
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - sudo dpkg -i google-chrome-stable_current_amd64.deb
-    - npm run server:
-        background: true
-    - npm run webdriver:
-        background: true
-    - sleep 5
   post:
-    - npm run protractor
