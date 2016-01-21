@@ -1,5 +1,6 @@
 using System.Net;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Consul
@@ -24,14 +25,14 @@ namespace Consul
         return _client.Get<string[]>(address);
       }
 
-      public Task<dynamic> Services(){
+      public Task<Dictionary<string, string[]>> Services(){
         var address = string.Format("{0}/{1}/catalog/services",_serviceBaseUrl, _apiVersion);
-        return _client.GetDynamic(address);
+        return _client.Get<Dictionary<string, string[]>>(address);
       }
 
-      public Task<dynamic> Services(string dataCenter){
+      public Task<Dictionary<string, string[]>> Services(string dataCenter){
         var address = string.Format("{0}/{1}/catalog/services?dc={2}",_serviceBaseUrl, _apiVersion, WebUtility.UrlEncode(dataCenter));
-        return _client.GetDynamic(address);
+        return _client.Get<Dictionary<string, string[]>>(address);
       }
 
       public Task<Service> Service(string name){

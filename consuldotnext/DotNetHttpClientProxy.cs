@@ -21,14 +21,6 @@ namespace Consul
           return JsonConvert.DeserializeObject<T>(contentString);
       }
 
-      public async Task<dynamic> GetDynamic(string url){
-          var option = new HttpCompletionOption();
-          var response = await _client.GetAsync(url, option);
-          var contentString = await response.Content.ReadAsStringAsync();
-          dynamic obj = JsonConvert.DeserializeObject(contentString);
-          return obj;
-      }
-
       public T GetSync<T>(string url){
           var option = new HttpCompletionOption();
           var response = _client.GetAsync(url, option).Result;
