@@ -3,6 +3,7 @@ dependencies:
       - sudo apt-get install unzip curl
       - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
       - dnvm upgrade -r coreclr
+      - cd consuldotnext && dnu restore && cd ..
+      - cd tests && dnu restore && cd ..
 test:
-  pre:
-  post:
+  override:

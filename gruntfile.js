@@ -13,6 +13,7 @@ module.exports = function(grunt) {
      },
      build: {
          exec: 'dnu build ./consuldotnext/project.json --out ./bin',
+         exec: 'dnu build ./tests/project.json --out ./bin'
      }
    }
   });
