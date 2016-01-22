@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
   var constants = {
-    'binDir': './bin',
+    'binDir': './dist',
     'tmpDir': './tmp',
     'appDir': './Pixills.Consul.Client',
     'testsDir': './Pixills.Consul.Client.Tests',
@@ -69,8 +69,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('restore', ['run:restore_project', 'run:restore_tests']);
-  grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
-  grunt.registerTask('test', ['run:test']);
-  grunt.registerTask('dev', ['watch']);
+  grunt.registerTask('build',   ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
+  grunt.registerTask('test',    ['run:test']);
+  grunt.registerTask('dev',     ['watch']);
   grunt.registerTask('default', ['build']);
 };
