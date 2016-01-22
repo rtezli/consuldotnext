@@ -10,8 +10,8 @@ test:
   override:
       - grunt build
       - grunt test
+      - pwd | ls
 teardown:
     pre:
         - mkdir $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
-        - pwd | ls
         - cp ~/consuldotnext/bin/*.* $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
