@@ -10,7 +10,7 @@ test:
   override:
       - grunt build -v
       - grunt test
-      - pwd | ls
+      - pwd | ls -al
 teardown:
     pre:
         - mkdir $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
