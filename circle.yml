@@ -2,7 +2,6 @@ dependencies:
   override:
       - sudo apt-get install -y unzip curl
       - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-      - sudo apt-get install -y libunwind8 libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev
       - dnvm upgrade -r coreclr
       - npm install
 test:
