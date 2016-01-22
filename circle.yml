@@ -1,10 +1,10 @@
 dependencies:
   override:
-    - sudo apt-get update
-    - sudo apt-get install software-properties-common
-    - sudo apt-add-respository "deb http://httpredir.debian.org/debian sid main"
-    - sudo apt-add-respository "deb-src http://httpredir.debian.org/debian sid main"
-    - sudo apt-get install -y unzip curl libunwind8 libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev libuv
+    #- sudo apt-get update
+    #- sudo apt-get install software-properties-common
+    #- sudo apt-add-respository "deb http://httpredir.debian.org/debian sid main"
+    #- sudo apt-add-respository "deb-src http://httpredir.debian.org/debian sid main"
+    #- sudo apt-get install -y unzip curl libunwind8 libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev libuv
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
     - dnvm upgrade -r coreclr
     - npm install
