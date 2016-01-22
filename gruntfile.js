@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
   var constants = {
-    'binDir': './dist',
+    'binDir': './bin',
     'tmpDir': './tmp',
     'appDir': './Pixills.Consul.Client',
     'testsDir': './Pixills.Consul.Client.Tests',
