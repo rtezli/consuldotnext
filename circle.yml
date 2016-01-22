@@ -13,6 +13,5 @@ test:
 teardown:
     pre:
         - mkdir $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
-        - ls ~/bin
-        - ls ~/consuldotnext
+        - pwd
         - cp ~/consuldotnext/bin/*.* $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
