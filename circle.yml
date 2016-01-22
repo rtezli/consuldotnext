@@ -12,4 +12,5 @@ test:
       - grunt test
 teardown:
     pre:
-        - cp bin/*.* $CIRCLE_ARTIFACTS
+        - mkdir $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
+        - cp consuldotnext/bin/*.* $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
