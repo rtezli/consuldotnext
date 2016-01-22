@@ -5,11 +5,13 @@ dependencies:
       - sudo apt-get install -y libunwind8
       - dnvm upgrade -r coreclr
       - npm install
-      - dnx --version
+      - whereis dnx >> dnxpath.sh
+      - whereis dnu >> dnupath.sh 
 
 test:
   override:
-      - dnx --version
+      - source dnxpath.sh
+      - source dnupath.sh
       - grunt build -vv
       - grunt test
       - pwd | ls -al
