@@ -13,7 +13,7 @@
   "projectUrl": "https://github.com/rtezli/consuldotnext",
   "licenseUrl": "https://github.com/rtezli/consuldotnext/blob/master/LICENSE",
   "tooling": {
-    "defaultNamespace": "Consul"
+    "defaultNamespace": "Pixills.Consul.Client"
   },
   "configurations": {
     "debug": {
@@ -49,5 +49,8 @@
     "Newtonsoft.Json": "8.0.2",
     "System.Net.Http": "4.0.1-beta-23516",
     "System.Threading.Tasks": "4.0.11-beta-23516"
+  },
+  "commands": {
+    "build": "dnu build"
   }
 }
