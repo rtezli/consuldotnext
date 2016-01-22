@@ -5,6 +5,7 @@ dependencies:
       - sudo apt-get install -y libunwind8
       - dnvm upgrade -r coreclr
       - npm install
+      - dnx -v
 
 test:
   override:
