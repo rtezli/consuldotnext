@@ -1,4 +1,5 @@
 install:
+    - sudo apt-get install software-properties-common
     - sudo apt-add-respository "deb http://httpredir.debian.org/debian sid main"
     - sudo apt-add-respository "deb-src http://httpredir.debian.org/debian sid main"
     - sudo apt-get update
