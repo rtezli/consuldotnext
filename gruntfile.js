@@ -69,7 +69,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('restore', ['run:restore_project', 'run:restore_tests']);
-  grunt.registerTask('build',   ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
+  grunt.registerTask('build',   ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy']);
   grunt.registerTask('test',    ['run:test']);
   grunt.registerTask('dev',     ['watch']);
   grunt.registerTask('default', ['build']);
