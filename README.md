@@ -1,6 +1,6 @@
 # consuldotnext [![Circle CI](https://circleci.com/gh/rtezli/consuldotnext.svg?style=svg)](https://circleci.com/gh/rtezli/consuldotnext)
 
-Consul client for DNX
+Consul client SDK for DNX
 
 ## Consul
 
@@ -25,6 +25,26 @@ To install `DNX` follow [this](http://docs.asp.net/en/latest/getting-started/ind
 
 Navigate to the source folder (where the `project.json` is located) and restore Nuget packages by :
 
-    dnu restore
+    grunt restore
 
 You should now be good to go.
+
+## Develop
+
+Select and editor of your choice. Open a command line in the root folder and type :
+
+    grunt dev
+
+This will watch for changes and rebuild the application
+
+## Build
+
+You can trigger the build manually by :
+
+    grunt build
+
+## Test
+
+You can trigger testing manually by :
+
+    grunt test

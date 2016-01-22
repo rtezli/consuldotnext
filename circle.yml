@@ -8,6 +8,8 @@ dependencies:
       - dnvm upgrade -r coreclr
       - cd consuldotnext && dnu restore && cd ..
       - cd tests && dnu restore && cd ..
-      - grunt build 
+
 test:
   override:
+      - grunt build
+      - grunt test 

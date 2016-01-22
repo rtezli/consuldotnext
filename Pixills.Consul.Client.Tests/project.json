@@ -49,12 +49,7 @@
     "Newtonsoft.Json": "8.0.2",
     "System.Net.Http": "4.0.1-beta-23516",
     "System.Threading.Tasks": "4.0.11-beta-23516",
-    "xunit": "2.2.0-beta1-build3239",
-    "xunit.runner.dnx": "2.1.0-rc1-build204",
-    "bin": {
-      "assembly": "../bin/Debug/dotnet5.4/consuldotnext.dll",
-      "pdb": "../bin/Debug/dotnet5.4/consuldotnext.pdb"
-    }
+    "xunit": "2.2.0-beta1-build3239"
   },
   "commands": {
     "test": "xunit.runner.dnx"

@@ -51,6 +51,6 @@
     "System.Threading.Tasks": "4.0.11-beta-23516"
   },
   "commands": {
-    "build": "dnu build"
+    "build": "cd .. && grunt build"
   }
 }
