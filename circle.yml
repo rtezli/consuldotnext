@@ -6,10 +6,9 @@ dependencies:
       - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
       - sudo apt-get install -y libunwind8
       - dnvm upgrade -r coreclr
-      - cd consuldotnext && dnu restore && cd ..
-      - cd tests && dnu restore && cd ..
+      - grunt restore
 
 test:
   override:
       - grunt build
-      - grunt test 
+      - grunt test
