@@ -1,0 +1,10 @@
+install:
+    - sudo apt-get install -y unzip curl
+    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+    - dnvm upgrade -r coreclr
+    - npm install
+script:
+    - source dnxpath.sh
+    - source dnupath.sh
+    - grunt build
+    - grunt test
