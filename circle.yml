@@ -10,7 +10,7 @@ dependencies:
 test:
   override:
       - dnx --version
-      - grunt build -v
+      - grunt build -vv
       - grunt test
       - pwd | ls -al
 teardown:
