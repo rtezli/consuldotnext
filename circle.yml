@@ -10,3 +10,6 @@ test:
   override:
       - grunt build
       - grunt test
+teardown:
+    pre:
+        - cp bin/*.* $CIRCLE_ARTIFACTS
