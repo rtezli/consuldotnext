@@ -33,7 +33,7 @@ You should now be good to go.
 
 Select and editor of your choice. Open a command line in the root folder and type :
 
-    grunt dev
+    grunt watch
 
 This will watch for changes and rebuild the application
 
