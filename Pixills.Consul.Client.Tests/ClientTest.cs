@@ -8,13 +8,13 @@ namespace Pixills.Consul.Client.Tests
         [Fact]
         public void PassingTest()
         {
-            var catalog = new Catalog();
+            //var catalog = new Catalog();
         }
 
         [Fact]
         public void FailingTest()
         {
-            
+
         }
     }
 }

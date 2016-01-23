@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
+
   var constants = {
     'binDir': './bin',
     'tmpDir': './tmp',
@@ -8,8 +9,10 @@ module.exports = function(grunt) {
     'testsDir': './Pixills.Consul.Client.Tests',
     'release': 'Release',
     'debug': 'Debug',
-    'framework': 'dnxcore50'
+    'framework': 'dnxcore50',
+    'config' : 'Debug'
   };
+
   grunt.initConfig({
     const: constants,
     watch: {
@@ -24,36 +27,47 @@ module.exports = function(grunt) {
         PIXILLS_CONSUL_CLIENT_BUILD_CONFIG: 'Release',
       }
     },
-    run: {
+    shell: {
       export_debug: {
-        exec: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Debug',
+        command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Debug'
       },
       export_release: {
-        exec: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release',
+        command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release'
       },
-      restore_project: {
-        cwd: '<%= const.appDir %>',
-        exec: 'dnu restore'
-      },
-      restore_tests: {
-        cwd: '<%= const.testsDir %>',
-        exec: 'dnu restore'
+      restore: {
+        command: 'dnu restore'
       },
       build_app: {
-        cwd: '<%= const.appDir %>',
-        exec: 'dnu build ./Pixills.Consul.Client/project.json --configuration $PIXILLS_CONSUL_CLIENT_BUILD_CONFIG'
+        options: {
+          execOptions: {
+            cwd: '<%= const.appDir %>'
+          }
+        },
+        command: 'dnu build --configuration <%= const.config %>'
       },
       build_tests: {
-        cwd: '<%= const.testsDir %>',
-        exec: 'dnu build <%= const.testsDir %>/project.json --configuration $PIXILLS_CONSUL_CLIENT_BUILD_CONFIG'
+        options: {
+          execOptions: {
+            cwd: '<%= const.testsDir %>'
+          }
+        },
+        command: 'dnu build --configuration <%= const.config %>'
       },
       test: {
-        cwd: '<%= const.testsDir %>',
-        exec: 'dnx test'
+        options: {
+          execOptions: {
+            cwd: '<%= const.testsDir %>'
+          }
+        },
+        command: 'dnx test'
       },
       pack: {
-        cwd: '<%= const.appDir %>',
-        exec: 'dnu pack <%= const.appDir %>/project.json --framework <%= const.framework %> --configuration <%= const.release %> --out <%= const.tmpDir %>'
+        options: {
+          execOptions: {
+            cwd: '<%= const.appDir %>'
+          }
+        },
+        command: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %>'
       }
     },
     copy: {
@@ -82,12 +96,12 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('restore', ['run:restore_project', 'run:restore_tests']);
-  grunt.registerTask('build-post', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
-  grunt.registerTask('build-release', ['env:debug', 'build-post']);
-  grunt.registerTask('build-debug', ['env:release', 'build-post']);
+  grunt.registerTask('restore', ['shell:restore']);
+  grunt.registerTask('build-post', ['clean:bin', 'shell:build_app', 'shell:build_tests', 'shell:pack', 'copy', 'clean:temp']);
+  grunt.registerTask('build-release', ['env:release', 'build-post']);
+  grunt.registerTask('build-debug', ['env:debug', 'build-post']);
   grunt.registerTask('build', ['build-release']);
-  grunt.registerTask('test', ['run:test']);
+  grunt.registerTask('test', ['shell:test']);
   grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['build']);
 };
