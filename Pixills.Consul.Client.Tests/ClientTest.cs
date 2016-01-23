@@ -1,4 +1,5 @@
 using Xunit;
+using Pixills.Consul.Client;
 
 namespace Pixills.Consul.Client.Tests
 {
