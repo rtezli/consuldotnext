@@ -13,8 +13,9 @@ machine:
     - cd /usr/local/src
     - sudo wget -q https://github.com/libuv/libuv/archive/v1.4.2.tar.gz
     - sudo mkdir /usr/local/src/libuv
-    - sudo tar zxfv v1.4.2.tar.gz -C libuv
-    - cd libuv/libuv-1.4.2
+    - sudo tar zxfv v1.4.2.tar.gz
+    - ls -al
+    - cd libuv-1.4.2
     - sudo sh autogen.sh && ./configure && make && make install
     - ldconfig
 dependencies:
