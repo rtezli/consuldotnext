@@ -10,12 +10,9 @@ machine:
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
     - dnvm install -r coreclr 1.0.0-rc1-update1 -alias default
-    - cd /usr/local/src
     - sudo wget -q https://github.com/libuv/libuv/archive/v1.4.2.tar.gz
-    - sudo tar zxfv /usr/local/src/v1.4.2.tar.gz
-    - ls -al /usr/local/src/
-    - ls -al /usr/local/src/v1.4.2
-    - cd libuv-1.4.2
+    - sudo tar zxfv v1.4.2.tar.gz -C libuv
+    - cd libuv
     - sudo sh autogen.sh && ./configure && make && make install
     - ldconfig
 dependencies:
