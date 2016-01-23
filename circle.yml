@@ -9,10 +9,11 @@ machine:
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - dnvm install -r coreclr 1.0.0-rc1-update1 -alias default 
-    - curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src
-    - cd /usr/local/src/libuv-$LIBUV_VERSION \
-    - sh autogen.sh && ./configure && make && make install
+    - dnvm install -r coreclr 1.0.0-rc1-update1 -alias default
+    - cd /usr/local/src
+    - sudo wget https://github.com/libuv/libuv/archive/v1.4.2.tar.gz
+    - sudo tar zxfv v1.4.2.tar.gz
+    - sudo sh autogen.sh && ./configure && make && make install
     - sudo rm -rf /usr/local/src/libuv-$LIBUV_VERSION
     - ldconfig
     - sudo rm -rf /var/lib/apt/lists/*
