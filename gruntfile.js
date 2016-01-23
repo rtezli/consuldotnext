@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     const: constants,
     watch: {
-      files: ['<%= const.appDir %>/**/*.*'],
+      files: ['<%= const.appDir %>/**/*.cs', '<%= const.testsDir %>/**/*.cs'],
       tasks: ['build']
     },
     shell: {
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             cwd: '<%= const.appDir %>'
           }
         },
-        command: 'dnu build --configuration <%= const.config %>'
+        command: 'dnu build --configuration <%= const.config %> --quiet'
       },
       build_tests: {
         options: {
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             cwd: '<%= const.testsDir %>'
           }
         },
-        command: 'dnu build --configuration <%= const.config %>'
+        command: 'dnu build --configuration <%= const.config %> --quiet'
       },
       test: {
         options: {
@@ -91,6 +91,5 @@ module.exports = function(grunt) {
   grunt.registerTask('restore', ['shell:restore']);
   grunt.registerTask('build', ['clean:bin', 'shell:build_app', 'shell:build_tests', 'shell:pack', 'copy', 'clean:temp']);
   grunt.registerTask('test', ['shell:test']);
-  grunt.registerTask('dev', ['watch']);
   grunt.registerTask('default', ['build']);
 };

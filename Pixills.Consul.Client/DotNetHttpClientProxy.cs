@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Pixills.Consul.Client
 {
-    public class DotNetHttpClientProxy : IHttpClient
+    internal class DotNetHttpClientProxy : IHttpClient
     {
         private readonly HttpClient _client;
 

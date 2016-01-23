@@ -1,14 +1,16 @@
 using Xunit;
 using Pixills.Consul.Client;
+using Pixills.Consul.Client.Tests.Mocks;
 
 namespace Pixills.Consul.Client.Tests
 {
     public class ClientTests
     {
         [Fact]
-        public void PassingTest()
+        public void ConstructorTest()
         {
-            //var catalog = new Catalog();
+            var http = new MockHttpClient();
+            var client = new Client(http, "localhost", "testservice");
         }
 
         [Fact]
