@@ -19,14 +19,6 @@ module.exports = function(grunt) {
       files: ['<%= const.appDir %>/**/*.*'],
       tasks: ['build']
     },
-    env: {
-      debug: {
-        PIXILLS_CONSUL_CLIENT_BUILD_CONFIG: 'Debug',
-      },
-      release: {
-        PIXILLS_CONSUL_CLIENT_BUILD_CONFIG: 'Release',
-      }
-    },
     shell: {
       export_debug: {
         command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Debug'
