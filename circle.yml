@@ -1,12 +1,13 @@
 machine:
   environment:
     DNX_VERSION : 1.0.0-rc1-update1
-    DNX_USER_HOME : /opt/dnx
+    DNX_USER_HOME : "/home/ubuntu/.dnx"
   pre:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip libc6-dev libicu-dev
     - sudo rm -rf /var/lib/apt/lists/*
-    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_USER_HOME=$DNX_USER_HOME DNX_BRANCH=v$DNX_VERSION sh
+    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
+    - bash -c "DNX_USER_HOME=$DNX_USER_HOME DNX_BRANCH=v$DNX_VERSION"
     - bash -c "source $DNX_USER_HOME/dnvm/dnvm.sh"
     - bash -c "dnvm install $DNX_VERSION -alias default"
     - bash -c "dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default"
