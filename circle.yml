@@ -13,6 +13,7 @@ machine:
     - cd /usr/local/src
     - sudo wget https://github.com/libuv/libuv/archive/v1.4.2.tar.gz
     - sudo tar zxfv v1.4.2.tar.gz
+    - cd v1.4.2
     - sudo sh autogen.sh && ./configure && make && make install
     - sudo rm -rf /usr/local/src/libuv-$LIBUV_VERSION
     - ldconfig
