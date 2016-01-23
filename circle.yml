@@ -1,9 +1,10 @@
+general:
+  artifacts: "bin"
+machine:
+  environment:
+    : PIXILLS_CONSUL_CLIENT_BUILD_CONFIG : Release
 dependencies:
   override:
-    #- sudo apt-get update
-    #- sudo apt-get install software-properties-common
-    #- sudo apt-add-respository "deb http://httpredir.debian.org/debian sid main"
-    #- sudo apt-add-respository "deb-src http://httpredir.debian.org/debian sid main"
     - sudo apt-get install -y unzip curl libunwind8
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
     - dnvm upgrade -r coreclr
@@ -12,7 +13,5 @@ test:
   override:
     - grunt build
     - grunt test
-teardown:
-    pre:
-    #- mkdir $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
-    #- cp ~/consuldotnext/bin/*.* $CIRCLE_ARTIFACTS/CIRCLE_BUILD_NUM
+deploy:
+    override:
