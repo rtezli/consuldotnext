@@ -13,5 +13,5 @@ test:
   override:
     - grunt build
     - grunt test
-deployment:
-    commands: ''
+#deployment:
+#    commands: ''
