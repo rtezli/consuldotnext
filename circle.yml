@@ -1,12 +1,25 @@
+machine:
+  environment:
+    DNX_VERSION :
+    DNX_USER_HOME :
+  pre:
+    - apt-get -qq update && apt-get -qqy install unzip libc6-dev libicu-dev && rm -rf /var/lib/apt/lists/*
+    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_USER_HOME=$DNX_USER_HOME DNX_BRANCH=v$DNX_VERSION sh
+    - bash -c "source $DNX_USER_HOME/dnvm/dnvm.sh"
+    - bash -c "dnvm install $DNX_VERSION -alias default"
+    - bash -c  "dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default"
+    - apt-get -qq update \
+    - apt-get -qqy install autoconf automake build-essential libtool \
+    - curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src \
+    - cd /usr/local/src/libuv-$LIBUV_VERSION \
+    - sh autogen.sh && ./configure && make && make install \
+    - rm -rf /usr/local/src/libuv-$LIBUV_VERSION \
+    - ldconfig
+    - apt-get -y purge autoconf automake build-essential libtool
+    - apt-get -y autoremove
+    - rm -rf /var/lib/apt/lists/*
 dependencies:
   override:
-    - sudo apt-get update
-    - sudo apt-get install -y unzip curl libunwind8
-    - wget https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
-    - chmod +x dnvminstall.sh
-    - source dnvminstall.sh
-    - source ~/.dnx/dnvm/dnvm.sh
-    - dnvm upgrade -r coreclr
     - npm install
 test:
   override:
