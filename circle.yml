@@ -4,17 +4,12 @@ machine:
     DNX_USER_HOME : "/home/ubuntu/.dnx"
   pre:
     - sudo apt-get -qq update
-    - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev
+    - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev libuv libuv-dev sqlite3 libsqlite3-dev
     - sudo rm -rf /var/lib/apt/lists/*
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
     - dnvm install -r coreclr 1.0.0-rc1-update1 -alias default
-    - sudo wget -q https://github.com/libuv/libuv/archive/v1.4.2.tar.gz
-    - sudo tar zxfv ~/v1.4.2.tar.gz
-    - cd ~/libuv-1.4.2
-    - source autogen.sh
-    - sudo ./configure && make && make install
     - ldconfig
 dependencies:
   override:
