@@ -6,7 +6,8 @@ machine:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev
     - sudo rm -rf /var/lib/apt/lists/*
-    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
+    - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
+    - source dnvminstall.sh
     - bash -c "dnvm install -r coreclr 1.0.0-rc1-update1 -alias default"
     - bash -c "dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default"
     - curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src
