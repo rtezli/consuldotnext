@@ -4,7 +4,7 @@ machine:
     DNX_USER_HOME : "/home/ubuntu/.dnx"
   pre:
     - sudo apt-get -qq update
-    - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev libuv libuv-dev sqlite3 libsqlite3-dev
+    - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev libuv sqlite3 libsqlite3-dev
     - sudo rm -rf /var/lib/apt/lists/*
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
