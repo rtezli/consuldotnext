@@ -1,5 +1,5 @@
-general:
-  artifacts: "bin"
+#general:
+#  artifacts: ["bin"
 machine:
   environment:
     PIXILLS_CONSUL_CLIENT_BUILD_CONFIG : Release
