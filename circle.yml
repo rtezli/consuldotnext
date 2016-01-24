@@ -7,21 +7,16 @@ machine:
     DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
   post:
-    - echo $PATH
-    - echo $DNX_BIN
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
-    - sudo ln -s /usr/bin $DNX_BIN
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
     - dnvm install -r coreclr -arch x64 latest
-    - dnvm list
-    - env
+    - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
 dependencies:
   override:
-    - env
     - npm install
 test:
   override:
