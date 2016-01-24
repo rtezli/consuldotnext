@@ -12,7 +12,7 @@ machine:
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - dnvm install -r coreclr -arch x64 latest
+    - dnvm install -r coreclr -arch x64 1.0.0-rc1-update1
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
 dependencies:
