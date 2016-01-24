@@ -8,6 +8,7 @@ machine:
     PATH: $PATH:$DNX_BIN
   pre:
     - echo $PATH
+    - echo $DNX_BIN
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
     - sudo ln -s /usr/bin $DNX_BIN
