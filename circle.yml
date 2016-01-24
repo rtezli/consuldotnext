@@ -19,7 +19,7 @@ machine:
     - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
 dependencies:
   override:
-    - npm install
+    - sudo npm install
 test:
   override:
     - cat $HOME/.config/NuGet/NuGet.config
