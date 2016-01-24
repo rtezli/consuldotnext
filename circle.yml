@@ -1,11 +1,11 @@
 machine:
   environment:
-    DNX_VERSION_: 1.0.0-rc1-update1
-    DNX_RUNTIME_: coreclr
-    DNX_ARCH_: x64
-    DNX_HOME_: $HOME/.dnx/runtimes/dnx-$DNX_RUNTIME_-$DNX_ARCH_.$DNX_VERSION_
-    DNX_BIN_: $DNX_HOME_/bin
-    PATH_: $PATH:$DNX_BIN_
+    DNX_VERSION: 1.0.0-rc1-update1
+    DNX_RUNTIME: coreclr
+    DNX_ARCH: x64
+    DNX_HOME: $HOME/.dnx
+    DNX_BIN: $DNX_HOME/runtimes/dnx-$(DNX_RUNTIME)-$(DNX_ARCH).$(DNX_VERSION)/bin
+    PATH: $PATH:$DNX_BIN
   pre:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
