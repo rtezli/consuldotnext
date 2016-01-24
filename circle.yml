@@ -17,8 +17,10 @@ machine:
     - sudo ldconfig
 dependencies:
   override:
+    - env
     - npm install
 test:
   override:
+    - env
     - grunt build
     - grunt test
