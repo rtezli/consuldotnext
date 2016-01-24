@@ -8,6 +8,7 @@ machine:
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
     - dnvm install -r coreclr -arch x64 latest
+    - dnvm list
     - sudo ldconfig
 dependencies:
   override:
