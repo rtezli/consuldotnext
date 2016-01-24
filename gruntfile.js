@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release'
       },
       restore: {
-        command: 'dnu restore --quiet -f https://www.nuget.org/api/v2'
+        command: 'dnu restore --quiet'
       },
       build_app: {
         options: {
