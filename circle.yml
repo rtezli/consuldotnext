@@ -1,6 +1,6 @@
 machine:
   environment:
-    $DNX_VERSION : 1.0.0-rc1-update1
+    DNX_VERSION : 1.0.0-rc1-update1
   pre:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
