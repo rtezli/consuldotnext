@@ -15,8 +15,8 @@ machine:
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
-    - mkdir -p $HOME/.config/NuGet
-    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
+    #- mkdir -p $HOME/.config/NuGet
+    #- mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
 dependencies:
   override:
     - npm install
