@@ -15,7 +15,7 @@ machine:
     - dnvm install -r coreclr -arch x64 1.0.0-rc1-update1
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
-    - sudo mv consuldotnet/NuGet.config ~/.config/NuGet/NuGet.config
+    - sudo mv ~/consuldotnext/NuGet.config ~/.config/NuGet/NuGet.config
 dependencies:
   override:
     - npm install
