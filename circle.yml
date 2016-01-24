@@ -4,7 +4,7 @@ machine:
     DNX_RUNTIME: coreclr
     DNX_ARCH: x64
     DNX_HOME: $HOME/.dnx
-    DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-$DNX_ARCH.$DNX_VERSION/bin
+    DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
   post:
     - sudo apt-get -qq update
