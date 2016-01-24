@@ -1,18 +1,19 @@
 machine:
   environment:
-    P_DNX_VERSION: 1.0.0-rc1-update1
-    #DNX_RUNTIME: coreclr
-    #DNX_ARCH: x64
-    #DNX_HOME: $HOME/.dnx
-    #DNX_BIN: $DNX_HOME/runtimes/dnx-$(DNX_RUNTIME)-$(DNX_ARCH).$(DNX_VERSION)/bin
-    #PATH: $PATH:$DNX_BIN
+    DNX_VERSION: 1.0.0-rc1-update1
+    DNX_RUNTIME: coreclr
+    DNX_ARCH: x64
+    DNX_HOME: $HOME/.dnx
+    DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-$DNX_ARCH.$DNX_VERSION/bin
+    PATH: $PATH:$DNX_BIN
   pre:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
+    - sudo ln -s $DNX_BIN /usr/bin
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - dnvm install -r coreclr -arch x64 $P_DNX_VERSION
+    - dnvm install -r coreclr -arch x64 latest
     - dnvm list
     - env
     - sudo ldconfig
