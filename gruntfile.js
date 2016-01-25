@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     'release': 'Release',
     'debug': 'Debug',
     'framework': 'dnxcore50',
-    'config' : 'Debug'
+    'config': 'Debug'
   };
 
   grunt.initConfig({
@@ -91,5 +91,6 @@ module.exports = function(grunt) {
   grunt.registerTask('restore', ['shell:restore']);
   grunt.registerTask('build', ['clean:bin', 'shell:build_app', 'shell:build_tests', 'shell:pack', 'copy', 'clean:temp']);
   grunt.registerTask('test', ['shell:test']);
+  grunt.registerTask('ct', ['build', 'test', 'watch']);
   grunt.registerTask('default', ['build']);
 };
