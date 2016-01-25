@@ -18,8 +18,8 @@ machine:
     - sudo ldconfig
     - sudo mozroots --import --sync
     - mkdir -p $HOME/.config/NuGet
-    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
-    - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
+    #- mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
+    #- sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
 dependencies:
   override:
     - npm install
