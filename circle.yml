@@ -6,10 +6,10 @@ machine:
     DNX_HOME: $HOME/.dnx
     DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
+    MONO_THREADS_PER_CPU: 2000
   post:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip mono-devel autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
-    - curl -v http://www.myget.org/F/aspnetvnext/api/v2/FindPackagesById()?id=\'xunit\'
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
