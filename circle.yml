@@ -7,9 +7,8 @@ machine:
     DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
   post:
-    - sudo echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list  
     - sudo apt-get -qq update
-    - sudo apt-get -qqy install unzip mono-complete mono-devel autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
+    - sudo apt-get -qqy install unzip mono-devel autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
