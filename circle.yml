@@ -8,13 +8,14 @@ machine:
     PATH: $PATH:$DNX_BIN
   post:
     - sudo apt-get -qq update
-    - sudo apt-get -qqy install unzip autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libunwind8 libunwind8-dev
+    - sudo apt-get -qqy install unzip mozroots autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
+    - sudo mozroots --import --sync
     #- mkdir -p $HOME/.config/NuGet
     #- mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
 dependencies:
