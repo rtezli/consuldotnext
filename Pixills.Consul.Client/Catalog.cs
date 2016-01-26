@@ -16,43 +16,40 @@ namespace Pixills.Consul.Client
 
         public Task<string[]> Datacenters()
         {
-            var address = string.Format("{0}/catalog/datacenters", _connection.Host);
-            return _connection.Get<string[]>(address);
+            return _connection.Get<string[]>("/catalog/datacenters");
         }
 
         public Task<Dictionary<string, string[]>> Services()
         {
-            var address = string.Format("{0}/catalog/services", _connection.Host);
-            return _connection.Get<Dictionary<string, string[]>>(address);
+            return _connection.Get<Dictionary<string, string[]>>("/catalog/services");
         }
 
-        public Task<Dictionary<string, string[]>> Services(string dataCenter)
+        public Task<Dictionary<string, string[]>> Services(string dataCenter = null)
         {
-            var address = string.Format("{0}/catalog/services?dc={2}", _connection.Host, WebUtility.UrlEncode(dataCenter));
+            var address = $"/catalog/services{(dataCenter == null ? "" : WebUtility.UrlEncode(dataCenter))}";
             return _connection.Get<Dictionary<string, string[]>>(address);
         }
 
         public Task<Service> Service(string name)
         {
-            var address = string.Format("{0}/catalog/service/{2}", _connection.Host, WebUtility.UrlEncode(name));
+            var address = $"/catalog/service/{(WebUtility.UrlEncode(name))}";
             return _connection.Get<Service>(address);
         }
 
         public Task<Nodes[]> Nodes()
         {
-            var address = string.Format("{0}/catalog/nodes", _connection.Host);
-            return _connection.Get<Nodes[]>(address);
+            return _connection.Get<Nodes[]>("/catalog/nodes");
         }
 
         public Task<Nodes[]> Nodes(string dataCenter)
         {
-            var address = string.Format("{0}/catalog/nodes?dc={2}", _connection.Host, WebUtility.UrlEncode(dataCenter));
+            var address = $"/catalog/nodes{(dataCenter == null ? "" : WebUtility.UrlEncode(dataCenter))}";
             return _connection.Get<Nodes[]>(address);
         }
 
         public Task<Node> Node(string name)
         {
-            var address = string.Format("{0}/catalog/node/{2}", _connection.Host, WebUtility.UrlEncode(name));
+            var address = $"/catalog/node/{(WebUtility.UrlEncode(name))}";
             return _connection.Get<Node>(address);
         }
     }

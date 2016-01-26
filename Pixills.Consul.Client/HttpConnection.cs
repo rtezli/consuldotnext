@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,9 +13,18 @@ namespace Pixills.Consul.Client
         public string Host { get; } = "localhost";
         public string ApiVersion { get; } = "v1";
 
-        public HttpConnection(string consulHost)
+        public HttpConnection(string consulHostOrIp, bool useTls = false, uint timeoutInSeconds = 0)
         {
-            Host = string.Format("{0}/{1}",consulHost, ApiVersion);
+            var match = Regex.Match(consulHostOrIp.ToLower(),"^http(s)?://");
+            if (match.Success)
+            {
+                consulHostOrIp = consulHostOrIp.Remove(match.Index, match.Length);
+            }
+            if (timeoutInSeconds > 0)
+            {
+                Client.Timeout = TimeSpan.FromSeconds(timeoutInSeconds);
+            }
+            Client.BaseAddress = new Uri($"{(useTls ? "https" : "http")}://{consulHostOrIp}/{ApiVersion}");
         }
 
         public async Task<T> Get<T>(string url)
