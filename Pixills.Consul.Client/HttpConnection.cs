@@ -4,17 +4,19 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Pixills.Net.Http;
 
 namespace Pixills.Consul.Client
 {
     public class HttpConnection
     {
-        public HttpClient Client { get; } = new HttpClient();
+        public IHttpClient Client { get; }
         public string Host { get; } = "localhost";
         public string ApiVersion { get; } = "v1";
 
-        public HttpConnection(string consulHostOrIp, bool useTls = false, uint timeoutInSeconds = 0)
+        public HttpConnection(string consulHostOrIp, IHttpClient client, bool useTls = false, uint timeoutInSeconds = 0)
         {
+            Client = client;
             var match = Regex.Match(consulHostOrIp.ToLower(),"^http(s)?://");
             if (match.Success)
             {
@@ -35,25 +37,12 @@ namespace Pixills.Consul.Client
             return JsonConvert.DeserializeObject<T>(contentString);
         }
 
-        public T GetSync<T>(string url)
-        {
-            var option = new HttpCompletionOption();
-            var response = Client.GetAsync(url, option).Result;
-            var contentString = response.Content.ReadAsStringAsync().Result;
-            return JsonConvert.DeserializeObject<T>(contentString);
-        }
-
         public Task Put(string url, object obj)
         {
             return new Task(async () =>
             {
                 await Client.PutAsync(url, new StringContent(Serializer.Serialize(obj)));
             });
-        }
-
-        public void PutSync(string url, object obj)
-        {
-            var response = Client.PutAsync(url, new StringContent(Serializer.Serialize(obj))).Result;
         }
 
         public void Dispose()
