@@ -10,6 +10,26 @@ namespace Pixills.Consul.Client.Tests
         public Uri BaseAddress {get; set;}
         public TimeSpan Timeout {get; set;}
 
+        public HttpClient()
+        {
+
+        }
+
+        public HttpClient(HttpResponseMessage reponse)
+        {
+
+        }
+
+        public HttpClient(Exception exception)
+        {
+
+        }
+
+        public HttpClient(int timeout)
+        {
+
+        }
+
         public Task<HttpResponseMessage> GetAsync(string url, HttpCompletionOption options)
         {
             return new Task<HttpResponseMessage>(() => {return new HttpResponseMessage();});
@@ -18,21 +38,6 @@ namespace Pixills.Consul.Client.Tests
         public Task<HttpResponseMessage> PutAsync(string url, HttpContent content)
         {
             return new Task<HttpResponseMessage>(() => {return new HttpResponseMessage();});
-        }
-
-        internal void SetResponse(HttpResponseMessage reponse)
-        {
-
-        }
-
-        internal void SetException(Exception exception)
-        {
-
-        }
-
-        internal void SetRequestTime(int secondsUntilReturn)
-        {
-
         }
 
         public void CancelPendingRequests()

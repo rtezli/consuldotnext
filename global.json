@@ -1,6 +1,7 @@
 {
   "projects": [
-    "Pixills.Consul.Client"
+    "Pixills.Consul.Client",
+    "Pixills.Consul.Client.Tests"
   ],
   "sdk": "1.0.0-rc1-update1"
 }
