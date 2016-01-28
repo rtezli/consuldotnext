@@ -1,7 +1,7 @@
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace Pixills.Consul.Client
 {
@@ -28,6 +28,11 @@ namespace Pixills.Consul.Client
         {
             var address = $"/catalog/services{(dataCenter == null ? "" : WebUtility.UrlEncode(dataCenter))}";
             return _connection.Get<Dictionary<string, string[]>>(address);
+        }
+
+        internal Task Register(object o)
+        {
+            return _connection.Put("/catalog/register", o);
         }
 
         public Task<Service> Service(string name)

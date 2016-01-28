@@ -21,3 +21,4 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ddf2478a-14e4-4cbc-8e1d-bc7b6a93fc6d")]
+[assembly: InternalsVisibleTo("Pixills.Consul.Client.Tests")]
