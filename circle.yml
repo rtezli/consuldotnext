@@ -2,7 +2,7 @@ machine:
   environment:
     DNX_ARCH: x64
     DNX_RUNTIME: coreclr
-    DNX_VERSION: 1.0.0-rc1-update1
+    DNX_VERSION: 1.0.0-rc2-16177
     DNX_HOME: $HOME/.dnx
     DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
@@ -18,8 +18,8 @@ machine:
     - sudo ldconfig
     - sudo mozroots --import --sync
     - mkdir -p $HOME/.config/NuGet
-    #- mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
-    #- sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
+    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
+    - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
 dependencies:
   override:
     - npm install

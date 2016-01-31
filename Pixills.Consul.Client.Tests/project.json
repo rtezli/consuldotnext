@@ -49,7 +49,7 @@
     "Pixills.Consul.Client": "",
     "Newtonsoft.Json": "8.0.2",
     "System.Net.Http": "4.0.1-rc2-23513",
-    "System.Threading.Tasks": "4.0.11-rc1-update1",
+    "System.Threading.Tasks": "4.0.11-rc2-16177",
     "xunit": "2.1.0",
     "xunit.runner.dnx": "2.1.0-rc1-build204"
   },

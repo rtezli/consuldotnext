@@ -38,10 +38,10 @@
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-rc2-23513",
-        "System.Collections": "4.0.11-rc1-update1",
-        "System.Linq": "4.0.1-rc1-update1",
-        "System.Runtime": "4.0.21-rc1-update1",
-        "System.Threading": "4.0.11-rc1-update1"
+        "System.Collections": "4.0.11-rc2-16177",
+        "System.Linq": "4.0.1-rc2-16177",
+        "System.Runtime": "4.0.21-rc2-16177",
+        "System.Threading": "4.0.11-rc2-16177"
       }
     }
   },
@@ -49,7 +49,7 @@
     "Newtonsoft.Json": "8.0.2",
     "System.Net.Http": "4.0.1-rc2-23513",
     "System.Text.RegularExpressions": "4.0.11-beta-23516",
-    "System.Threading.Tasks": "4.0.11-rc1-update1"
+    "System.Threading.Tasks": "4.0.11-rc2-16177"
   },
   "commands": {
     "build": "cd .. && grunt build"
