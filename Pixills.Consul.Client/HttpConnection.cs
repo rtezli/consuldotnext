@@ -14,7 +14,10 @@ namespace Pixills.Consul.Client
         private readonly IHttpClient _client;
         private readonly MediaTypeHeaderValue _contentType = new MediaTypeHeaderValue("application/json");
         private readonly ProductInfoHeaderValue _userAgent = new ProductInfoHeaderValue("PixillsConsulClient","0.0.1");
-        public string Host { get; } = "localhost";
+
+        private readonly string _consulHostName = Environment.GetEnvironmentVariable("CONSUL_AGENT_HOSTNAME") ?? "localhost";
+        private readonly string _consulPort = Environment.GetEnvironmentVariable("CONSUL_AGENT_PORT") ?? "8500";
+
         public string ApiVersion { get; } = "v1";
 
         public uint Timeout
@@ -33,11 +36,11 @@ namespace Pixills.Consul.Client
             }
         }
 
-        public HttpConnection(string consulHostOrIp, IHttpClient client, bool useTls = false, uint timeoutInSeconds = 0)
+        public HttpConnection(IHttpClient client, bool useTls = false, uint timeoutInSeconds = 0)
         {
-            if (string.IsNullOrWhiteSpace(consulHostOrIp))
+            if (string.IsNullOrWhiteSpace(_consulHostName))
             {
-                throw new ArgumentException("Host or IP can not be emtpy");
+                throw new ArgumentException("Host or IP can not be emtpy. Check the environment variable 'CONSUL_AGENT_HOSTNAME'");
             }
 
             if (client == null)
@@ -46,15 +49,18 @@ namespace Pixills.Consul.Client
             }
 
             _client = client;
-            var match = Regex.Match(consulHostOrIp.ToLower(), "^http(s)?://");
+            var match = Regex.Match(_consulHostName.ToLower(), "^http(s)?://");
             if (match.Success)
             {
-                consulHostOrIp = consulHostOrIp.Remove(match.Index, match.Length);
+                _consulHostName = _consulHostName.Remove(match.Index, match.Length);
             }
 
             try
             {
-                _client.BaseAddress = new Uri($"{(useTls ? "https" : "http")}://{consulHostOrIp}/{ApiVersion}");
+                var port = _consulPort == "80" ? "" :  _consulPort;
+                port = port == "443" && useTls ? "" : port;
+                _client.BaseAddress =
+                new Uri($"{(useTls ? "https" : "http")}://{_consulHostName}{port}/{ApiVersion}");
             }
             catch (UriFormatException e)
             {

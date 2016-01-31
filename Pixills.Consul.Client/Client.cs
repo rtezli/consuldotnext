@@ -11,6 +11,7 @@ namespace Pixills.Consul.Client
         private readonly string _nodeName;
         private readonly string _serviceName;
         private readonly string _datacenterName;
+
         public Dictionary<string, string> Services { get; }
 
         public Client(HttpConnection connection)
@@ -18,6 +19,7 @@ namespace Pixills.Consul.Client
             _nodeName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_NODE_NAME") ?? "undefined node";
             _serviceName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_SERVICE_NAME") ?? "undefined service";
             _datacenterName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_DATACENTER_NAME") ?? "dc1";
+
             _catalog = new Catalog(connection);
         }
 
