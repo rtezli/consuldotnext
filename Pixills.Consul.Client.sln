@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pixills.Consul.Client", "Pixills.Consul.Client\Pixills.Consul.Client.xproj", "{DDF2478A-14E4-4CBC-8E1D-BC7B6A93FC6D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pixills.Consul.Client.Tests", "Pixills.Consul.Client.Tests\Pixills.Consul.Client.Tests.xproj", "{D534CA0B-BE46-4276-B8DC-3580756D96CD}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pixills.Consul.Client.UnitTests", "Pixills.Consul.Client.UnitTests\Pixills.Consul.Client.UnitTests.xproj", "{D534CA0B-BE46-4276-B8DC-3580756D96CD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pixills.Consul.Client.IntegrationTests", "Pixills.Consul.Client.IntegrationTests\Pixills.Consul.Client.IntegrationTests.xproj", "{8DAAE24F-0F3C-4764-A3D8-6103F124CBD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1191484-157B-4962-A5EB-88744E06CA71}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,6 +36,10 @@ Global
 		{D534CA0B-BE46-4276-B8DC-3580756D96CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D534CA0B-BE46-4276-B8DC-3580756D96CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D534CA0B-BE46-4276-B8DC-3580756D96CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DAAE24F-0F3C-4764-A3D8-6103F124CBD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DAAE24F-0F3C-4764-A3D8-6103F124CBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DAAE24F-0F3C-4764-A3D8-6103F124CBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DAAE24F-0F3C-4764-A3D8-6103F124CBD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

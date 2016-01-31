@@ -13,13 +13,13 @@ machine:
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
+    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
+    - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
+    - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH # $DNX_VERSION
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
     - sudo mozroots --import --sync
     - mkdir -p $HOME/.config/NuGet
-    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
-    - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
 dependencies:
   override:
     - npm install

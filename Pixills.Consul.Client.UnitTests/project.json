@@ -13,7 +13,7 @@
   "projectUrl": "https://github.com/rtezli/consuldotnext",
   "licenseUrl": "https://github.com/rtezli/consuldotnext/blob/master/LICENSE",
   "tooling": {
-    "defaultNamespace": "Pixills.Consul.Client.Tests"
+    "defaultNamespace": "Pixills.Consul.Client.UnitTests"
   },
   "configurations": {
     "debug": {
