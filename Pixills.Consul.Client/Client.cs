@@ -9,16 +9,16 @@ namespace Pixills.Consul.Client
     {
         private Catalog _catalog;
         private readonly string _nodeName;
+        private readonly string _address;
         private readonly string _serviceName;
         private readonly string _datacenterName;
         public Dictionary<string, string> Services { get; }
 
-        public Client()
+        public Client(HttpConnection connection)
         {
-            _nodeName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_NODE_NAME");
-            _serviceName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_SERVICE_NAME");
-            _datacenterName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_DATACENTER_NAME");
-            var connection = new HttpConnection("localhost:8500", new HttpClient(), false, 5);
+            _nodeName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_NODE_NAME") ?? "undefined node";
+            _serviceName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_SERVICE_NAME") ?? "undefined service";
+            _datacenterName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_DATACENTER_NAME") ?? "dc1";
             _catalog = new Catalog(connection);
         }
 
@@ -37,8 +37,16 @@ namespace Pixills.Consul.Client
             return _catalog.Register(new
             {
                 DataCenter = _datacenterName,
-                Service = _serviceName,
-                Node = _nodeName
+                Node = _nodeName,
+                Address = _address ?? "127.0.0.1",
+                Service = new
+                {
+                    ID = service.Id,
+                    Service = service.ServiceName,
+                    Tags = service.Tags,
+                    Address = service.Address,
+                    Port = service.Port
+                },
             });
         }
     }

@@ -2,11 +2,19 @@ module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
 
+    process.env.CONSUL_CLIENT_NODE_NAME = "test-node";
+    process.env.CONSUL_CLIENT_SERVICE_NAME = "test-service";
+    process.env.CONSUL_CLIENT_DATACENTER_NAME = "test-datacenter";
+    process.env.CONSUL_AGENT_HOSTNAME = "localhost";
+    process.env.CONSUL_AGENT_PORT = "8500";
+
     var constants = {
+        'rootDir': './',
         'binDir': './bin',
         'tmpDir': './tmp',
         'appDir': './Pixills.Consul.Client',
-        'testsDir': './Pixills.Consul.Client.Tests',
+        'unitTestsDir': './Pixills.Consul.Client.UnitTests',
+        'integrationTestsDir': './Pixills.Consul.Client.IntegrationTests',
         'release': 'Release',
         'debug': 'Debug',
         'framework': 'dnxcore50',
@@ -16,57 +24,62 @@ module.exports = function (grunt) {
     grunt.initConfig({
         const: constants,
         watch: {
-            files: ['<%= const.appDir %>/**/*.cs', '<%= const.testsDir %>/**/*.cs'],
+            files: ['<%= const.appDir %>/**/*.cs', '<%= const.unitTestsDir %>/**/*.cs'],
             tasks: ['build']
         },
-        shell: {
+        run: {
+            consul: {
+                options: {
+                    quiet : true,
+                    wait: false
+                },
+                exec: 'consul agent -server -bootstrap -data-dir ./consuldata -log-level=debug -http-port=' + process.env.CONSUL_AGENT_PORT + ' -dc=' + (process.env.CONSUL_CLIENT_DATACENTER_NAME || 'dc1')
+            },
             export_debug: {
-                command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Debug'
+                exec: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Debug'
             },
             export_release: {
-                command: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release'
+                exec: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release'
             },
             restore: {
-                command: 'dnu restore'
+                exec: 'dnu restore'
             },
             build_app: {
                 options: {
-                    execOptions: {
-                        cwd: '<%= const.appDir %>'
-                    }
+                    cwd: '<%= const.appDir %>'
                 },
-                command: 'dnu build --configuration <%= const.config %> --quiet'
+                exec: 'dnu build --configuration <%= const.config %> --quiet'
             },
             build_tests: {
                 options: {
-                    execOptions: {
-                        cwd: '<%= const.testsDir %>'
-                    }
+                    cwd: '<%= const.unitTestsDir %>'
                 },
-                command: 'dnu build --configuration <%= const.config %> --quiet'
+                exec: 'dnu build --configuration <%= const.config %> --quiet'
             },
-            test: {
+            unittest: {
                 options: {
-                    execOptions: {
-                        cwd: '<%= const.testsDir %>'
-                    }
+                    cwd: '<%= const.unitTestsDir %>'
                 },
-                command: 'dnx test'
+                exec: 'dnx test'
+            },
+            integrationtest: {
+                options: {
+                    cwd: '<%= const.integrationTestsDir %>'
+                },
+                exec: 'dnx test'
             },
             pack: {
                 options: {
-                    execOptions: {
                         cwd: '<%= const.appDir %>'
-                    }
                 },
-                command: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %>'
+                exec: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %>'
             }
         },
         copy: {
             binaries: {
                 files: [{
                     expand: true,
-                    src: ['<%= const.tmpDir %>/**/*.dll', '<%= const.tmpDir %>/**/*.pdb', '!<%= const.tmpDir %>/**/*.Tests.dll', '<%= const.tmpDir %>/**/*.nupkg', '!<%= const.tmpDir %>/**/*.symbols.nupkg'],
+                    src: ['<%= const.tmpDir %>/**/*.dll', '<%= const.tmpDir %>/**/*.pdb', '!<%= const.tmpDir %>/**/*Tests.dll', '<%= const.tmpDir %>/**/*.nupkg', '!<%= const.tmpDir %>/**/*.symbols.nupkg'],
                     dest: '<%= const.binDir %>',
                     flatten: true
                 }]
@@ -88,9 +101,10 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('restore', ['shell:restore']);
-    grunt.registerTask('build', ['clean:bin', 'shell:build_app', 'shell:build_tests', 'shell:pack', 'copy', 'clean:temp']);
-    grunt.registerTask('test', ['shell:test']);
-    grunt.registerTask('ct', ['build', 'test', 'watch']);
+    grunt.registerTask('restore', ['run:restore']);
+    grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
+    grunt.registerTask('unit-test', ['build', 'run:unittest']);
+    grunt.registerTask('int-test', ['build', 'run:consul', 'run:integrationtest']);
+    grunt.registerTask('ct', ['unittest', 'watch']);
     grunt.registerTask('default', ['build']);
 };

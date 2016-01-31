@@ -1,7 +1,6 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System;
 
 namespace Pixills.Consul.Client
 {

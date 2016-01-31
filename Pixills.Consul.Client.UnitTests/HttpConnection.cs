@@ -2,7 +2,7 @@ using Xunit;
 using Pixills.Net.Http;
 using System;
 
-namespace Pixills.Consul.Client.Tests
+namespace Pixills.Consul.Client.UnitTests
 {
     public class HttpConnection
     {

@@ -3,7 +3,7 @@ using System.Net.Http;
 using Pixills.Net.Http;
 using System.Threading.Tasks;
 
-namespace Pixills.Consul.Client.Tests
+namespace Pixills.Consul.Client.UnitTests
 {
     public class HttpClient : IHttpClient
     {
