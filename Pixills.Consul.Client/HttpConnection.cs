@@ -12,6 +12,7 @@ namespace Pixills.Consul.Client
         private readonly IHttpClient _client;
         public string Host { get; } = "localhost";
         public string ApiVersion { get; } = "v1";
+        public string ClientVersion { get; } = "0.0.1";
 
         public uint Timeout
         {
@@ -63,20 +64,37 @@ namespace Pixills.Consul.Client
             }
         }
 
-        public async Task<T> Get<T>(string url)
+        public Task<T> Get<T>(string url)
         {
-            var option = new HttpCompletionOption();
-            var response = await _client.GetAsync(url, option);
-            var contentString = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(contentString);
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("User-Agent", $"Pixills Consul Client {ClientVersion}");
+            return _client
+                .SendAsync(request)
+                .ContinueWith(t =>
+                {
+                    return t.Result.Content.ReadAsStringAsync().Result;
+                })
+                .ContinueWith(t =>
+                {
+                    return JsonConvert.DeserializeObject<T>(t.Result);
+                });
         }
 
         public Task Put(string url, object obj)
         {
-            return new Task(async () =>
-            {
-                await _client.PutAsync(url, new StringContent(Serializer.Serialize(obj)));
-            });
+            var request = new HttpRequestMessage(HttpMethod.Put, url);
+            request.Headers.Add("User-Agent", $"Pixills Consul Client {ClientVersion}");
+            return Task.Factory.StartNew(() => JsonConvert
+                .SerializeObject(obj, Formatting.None,
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    }))
+                     .ContinueWith(t =>
+                     {
+                         request.Content = new StringContent(t.Result);
+                         return _client.SendAsync(request);
+                     });
         }
 
         public void Dispose()

@@ -19,7 +19,6 @@ namespace Pixills.Consul.Client
             _serviceName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_SERVICE_NAME");
             _datacenterName = Environment.GetEnvironmentVariable("CONSUL_CLIENT_DATACENTER_NAME");
             var connection = new HttpConnection("localhost:8500", new HttpClient(), false, 5);
-
             _catalog = new Catalog(connection);
         }
 

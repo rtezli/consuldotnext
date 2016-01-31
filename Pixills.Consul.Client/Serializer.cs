@@ -10,7 +10,7 @@ namespace Pixills.Consul.Client
                 Formatting.None,
                 new JsonSerializerSettings
                 {
-                  NullValueHandling = NullValueHandling.Ignore
+                    NullValueHandling = NullValueHandling.Ignore
                 });
             }
     }

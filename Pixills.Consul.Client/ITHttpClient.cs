@@ -8,8 +8,7 @@ namespace Pixills.Net.Http
     {
         Uri BaseAddress {get; set;}
         TimeSpan Timeout {get; set;}
-        Task<HttpResponseMessage> GetAsync(string url, HttpCompletionOption options);
-        Task<HttpResponseMessage> PutAsync(string url, HttpContent content);
+        Task<HttpResponseMessage> SendAsync(HttpRequestMessage request);
         void CancelPendingRequests();
     }
 }

@@ -30,14 +30,12 @@ namespace Pixills.Consul.Client.Tests
 
         }
 
-        public Task<HttpResponseMessage> GetAsync(string url, HttpCompletionOption options)
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            return new Task<HttpResponseMessage>(() => {return new HttpResponseMessage();});
-        }
-
-        public Task<HttpResponseMessage> PutAsync(string url, HttpContent content)
-        {
-            return new Task<HttpResponseMessage>(() => {return new HttpResponseMessage();});
+            return new Task<HttpResponseMessage>(() => 
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            });
         }
 
         public void CancelPendingRequests()
