@@ -9,7 +9,6 @@ namespace Pixills.Consul.Client
     {
         private Catalog _catalog;
         private readonly string _nodeName;
-        private readonly string _address;
         private readonly string _serviceName;
         private readonly string _datacenterName;
         public Dictionary<string, string> Services { get; }
@@ -38,7 +37,7 @@ namespace Pixills.Consul.Client
             {
                 DataCenter = _datacenterName,
                 Node = _nodeName,
-                Address = _address ?? "127.0.0.1",
+                Address = _nodeName ?? "localhost",
                 Service = new
                 {
                     ID = service.Id,

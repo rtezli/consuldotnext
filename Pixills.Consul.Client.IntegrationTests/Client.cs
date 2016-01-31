@@ -8,7 +8,6 @@ namespace Pixills.Consul.Client.IntegrationTests
     public class Client
     {
         private readonly string _nodeName;
-        private readonly string _address;
         private readonly string _serviceName;
         private readonly string _datacenterName;
         private readonly string _consulHostName;
@@ -27,43 +26,49 @@ namespace Pixills.Consul.Client.IntegrationTests
         [Fact]
         public async Task Register_RegisterAValidService_ShouldRegisterAService()
         {
-            var client = new Consul.Client.Client(new HttpConnection($"{_consulHostName}:{_consulPort}", new HttpClient(), false, 3));
-            var service = new Service
-            {
-                ServiceName = "test-service",
-                Tags = new[] { "test", "service" },
-                Address = "127.0.0.1",
-                Port = 80
-            };
-            await client.Register(service);
+            var client = new Consul.Client.Client(CreateHttpConnection());
+            await client.Register(ValidService());
         }
 
         [Fact]
         public async Task GetServices_QueryWithExistingService_ShouldReturnTheRegisteredServices()
         {
-            var client = new Consul.Client.Client(new HttpConnection("localhost:8500", new HttpClient(), false, 3));
-            var service = new Service
-            {
-                ServiceName = "test-service",
-                Tags = new[] { "test", "service" },
-                Address = "127.0.0.1",
-                Port = 80
-            };
+            var client = new Consul.Client.Client(CreateHttpConnection());
             var services = await client.GetService("test-service");
         }
 
         [Fact]
         public async Task GetServices_QueryWithNonExistingService_ShouldReturnTheRegisteredServices()
         {
-            var client = new Consul.Client.Client(new HttpConnection("localhost:8500", new HttpClient(), false, 3));
-            var service = new Service
+            var client = new Consul.Client.Client(CreateHttpConnection());
+            var services = await client.GetService("non-existing-service");
+        }
+
+        private HttpConnection CreateHttpConnection()
+        {
+            return new HttpConnection($"{_consulHostName}:{_consulPort}", new HttpClient(), false, 3);
+        }
+
+        private Service ValidService()
+        {
+            return new Service
             {
                 ServiceName = "test-service",
                 Tags = new[] { "test", "service" },
                 Address = "127.0.0.1",
                 Port = 80
             };
-            var services = await client.GetService("non-existing-service");
+        }
+
+        private Service InValidService()
+        {
+            return new Service
+            {
+                ServiceName = "test-service",
+                Tags = new[] { "test", "service" },
+                Address = "127.0.0.1",
+                Port = 80
+            };
         }
     }
 }
