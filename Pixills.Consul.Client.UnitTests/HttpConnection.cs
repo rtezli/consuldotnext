@@ -11,6 +11,7 @@ namespace Pixills.Consul.Client.UnitTests
         public HttpConnection()
         {
             _client = new HttpClient();
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_PORT", "1337");
         }
 
         [Fact]
@@ -18,15 +19,7 @@ namespace Pixills.Consul.Client.UnitTests
         {
             Assert.Throws<UriFormatException>(() =>
             {
-                new Consul.Client.HttpConnection(_client, true, 5);
-            });
-        }
-
-        [Fact]
-        public void HttpConnection_Constructor_CallWithEmptyUrl_ShouldThrowException()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
+                Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "invalid url");
                 new Consul.Client.HttpConnection(_client, true, 5);
             });
         }
@@ -36,6 +29,7 @@ namespace Pixills.Consul.Client.UnitTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
+                Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", null);
                 new Consul.Client.HttpConnection(_client, true, 5);
             });
         }
@@ -45,6 +39,7 @@ namespace Pixills.Consul.Client.UnitTests
         {
             Assert.Throws<ArgumentException>(() =>
             {
+                Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", null);
                 new Consul.Client.HttpConnection(null, true, 5);
             });
         }
@@ -52,18 +47,21 @@ namespace Pixills.Consul.Client.UnitTests
         [Fact]
         public void HttpConnection_Constructor_CallWithValidArgs_ShouldNotThrowException()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client, true, 5);
         }
 
         [Fact]
         public void HttpConnection_Constructor_CallWithLeastParameters_ShouldNotThrowException()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client);
         }
 
         [Fact]
         public void HttpConnection_Constructor_CallWithHostWithHttpPrefix_ShouldRemoveHttpPrefix()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "http://localhost");
             var con = new Consul.Client.HttpConnection(_client);
             Assert.Equal(new Uri("http://localhost:1337/v1"), con.BaseAddress);
         }
@@ -71,6 +69,7 @@ namespace Pixills.Consul.Client.UnitTests
         [Fact]
         public void HttpConnection_Constructor_CallWithTlsFalse_ShouldAddHttpPrefix()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client);
             Assert.Equal(new Uri("http://localhost:1337/v1"), con.BaseAddress);
         }
@@ -78,6 +77,7 @@ namespace Pixills.Consul.Client.UnitTests
         [Fact]
         public void HttpConnection_Constructor_CallWithTlsTrue_ShouldAddHttpsPrefix()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client, true);
             Assert.Equal(new Uri("https://localhost:1337/v1"), con.BaseAddress);
         }
@@ -85,6 +85,7 @@ namespace Pixills.Consul.Client.UnitTests
         [Fact]
         public void HttpConnection_Constructor_CallWithTimeout0_ShouldNotAddTimeout()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client, true, 0);
             Assert.Equal(0, (int)con.Timeout);
         }
@@ -92,6 +93,7 @@ namespace Pixills.Consul.Client.UnitTests
         [Fact]
         public void HttpConnection_Constructor_CallWithTimeoutGreater0_ShouldAddTimeout()
         {
+            Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", "localhost");
             var con = new Consul.Client.HttpConnection(_client, true, 5);
             Assert.Equal(5, (int)con.Timeout);
         }

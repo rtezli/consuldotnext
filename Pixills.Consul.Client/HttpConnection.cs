@@ -59,6 +59,10 @@ namespace Pixills.Consul.Client
             {
                 var port = _consulPort == "80" ? "" :  _consulPort;
                 port = port == "443" && useTls ? "" : port;
+                if(!string.IsNullOrWhiteSpace(port))
+                {
+                    port = $":{port}";
+                }
                 _client.BaseAddress =
                 new Uri($"{(useTls ? "https" : "http")}://{_consulHostName}{port}/{ApiVersion}");
             }
