@@ -13,7 +13,7 @@ machine:
     - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
     - source dnvminstall.sh
     - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
+    #- mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
     - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
