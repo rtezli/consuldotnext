@@ -97,9 +97,9 @@ namespace Pixills.Consul.Client
                     Debug.WriteLine(stringResult);
                     return stringResult;
                 })
-                .ContinueWith(t =>
+                .ContinueWith(task =>
                 {
-                    return JsonConvert.DeserializeObject<T>(t.Result);
+                    return JsonConvert.DeserializeObject<T>(task.Result);
                 });
         }
 
@@ -115,15 +115,15 @@ namespace Pixills.Consul.Client
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     }))
-                     .ContinueWith(t =>
+                     .ContinueWith(task =>
                      {
-                         request.Content = new StringContent(t.Result);
+                         request.Content = new StringContent(task.Result);
                          request.Content.Headers.ContentType = _contentType;
                          return _client.SendAsync(request).Result;
                      })
-                     .ContinueWith(t =>
+                     .ContinueWith(task =>
                      {
-                         var response = t.Result;
+                         var response = task.Result;
                          Debug.WriteLine(response);
                          if(!response.IsSuccessStatusCode)
                          {
