@@ -50,9 +50,15 @@ module.exports = function(grunt) {
                 },
                 exec: 'dnu build --configuration <%= const.config %> --quiet'
             },
-            build_tests: {
+            build_unit_tests: {
                 options: {
                     cwd: '<%= const.unitTestsDir %>'
+                },
+                exec: 'dnu build --configuration <%= const.config %> --quiet'
+            },
+            build_int_tests: {
+                options: {
+                    cwd: '<%= const.integrationTestsDir %>'
                 },
                 exec: 'dnu build --configuration <%= const.config %> --quiet'
             },
@@ -72,7 +78,7 @@ module.exports = function(grunt) {
                 options: {
                     cwd: '<%= const.appDir %>'
                 },
-                exec: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %>'
+                exec: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %> --quiet'
             }
         },
         copy: {
@@ -103,8 +109,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('restore', ['run:restore']);
     grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
-    grunt.registerTask('unit-test', ['restore', 'build', 'run:unittest']);
-    grunt.registerTask('int-test', ['restore', 'build', 'run:consul', 'run:integrationtest']);
+    grunt.registerTask('unit-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_tests', 'run:unittest']);
+    grunt.registerTask('int-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_unit_tests','run:consul', 'run:integrationtest']);
     grunt.registerTask('ct', ['unittest', 'watch']);
     grunt.registerTask('default', ['build']);
 };

@@ -28,7 +28,7 @@ namespace Pixills.Consul.Client
             return _catalog.Services();
         }
 
-        public Task<Service> GetService(string name)
+        public Task<Service[]> GetService(string name)
         {
             return _catalog.Service(name);
         }

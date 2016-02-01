@@ -30,10 +30,10 @@ namespace Pixills.Consul.Client
             return _connection.Put("/catalog/register", o);
         }
 
-        public Task<Service> Service(string name)
+        public Task<Service[]> Service(string name)
         {
             var address = $"/catalog/service/{WebUtility.UrlEncode(name)}";
-            return _connection.Get<Service>(address);
+            return _connection.Get<Service[]>(address);
         }
 
         public Task<Node> Node(string name)

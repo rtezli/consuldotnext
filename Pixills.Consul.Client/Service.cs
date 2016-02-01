@@ -4,22 +4,22 @@ namespace Pixills.Consul.Client
 {
     public class Service
     {
-        [JsonProperty("ID")]
+        [JsonProperty("ServiceID")]
         public string Id { get; set; }
 
-        [JsonProperty("Service")]
+        [JsonProperty("ServiceName")]
         public string Name { get; set; }
 
-        [JsonProperty("Tags")]
+        [JsonProperty("ServiceTags")]
         public string[] Tags { get; set; }
 
         [JsonProperty("Node")]
         public string Node { get; set; }
 
-        [JsonProperty("Address")]
+        [JsonProperty("ServiceAddress")]
         public string Address { get; set; }
 
-        [JsonProperty("Port")]
+        [JsonProperty("ServicePort")]
         public ushort Port { get; set; }
     }
 }

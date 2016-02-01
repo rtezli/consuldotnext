@@ -1,6 +1,7 @@
 ﻿using Pixills.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Pixills.Consul.Client.IntegrationTests
@@ -12,16 +13,16 @@ namespace Pixills.Consul.Client.IntegrationTests
         {
             var client = new Consul.Client.Client(CreateHttpConnection());
             await client.Register(ValidService());
-            var services = await client.GetService("test-service");
-            Assert.Equal(services, Enumerable.Empty<string, string[]>());
+            var service = await client.GetService("test-service");
+            Assert.Equal("test-service", service[0].Name);
         }
 
         [Fact]
         public async Task GetServices_QueryWithNonExistingService_ShouldReturnAnEmptyCollection()
         {
             var client = new Consul.Client.Client(CreateHttpConnection());
-            var services = await client.GetService("non-existing-service");
-            Assert.Equal(services, Enumerable.Empty<string, string[]>());
+            var service = await client.GetService("non-existing-service");
+            Assert.Equal(new Service[0], service);
         }
 
         private HttpConnection CreateHttpConnection()
