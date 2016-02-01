@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 exec: 'export PIXILLS_CONSUL_CLIENT_BUILD_CONFIG=Release'
             },
             restore: {
-                exec: 'dnu restore'
+                exec: 'dnu restore --quiet'
             },
             build_app: {
                 options: {

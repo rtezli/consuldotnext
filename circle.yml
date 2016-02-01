@@ -18,6 +18,8 @@ machine:
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - dnvm alias default -Version $DNX_VERSION -Runtime $DNX_RUNTIME -Arch $DNX_ARCH
+    - dnvm list
+    - ls $DNX_HOME/runtimes
     - sudo ln -s /usr/bin $DNX_BIN
     - sudo ldconfig
     - sudo mozroots --import --sync
