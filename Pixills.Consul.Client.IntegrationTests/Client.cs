@@ -1,5 +1,4 @@
 ﻿using Pixills.Net.Http;
-using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -37,7 +36,7 @@ namespace Pixills.Consul.Client.IntegrationTests
         {
             return new Service
             {
-                ServiceName = "test-service",
+                Name = "test-service",
                 Tags = new[] { "test", "service" },
                 Address = "127.0.0.1",
                 Port = 80
@@ -48,7 +47,7 @@ namespace Pixills.Consul.Client.IntegrationTests
         {
             return new Service
             {
-                ServiceName = "test-service",
+                Name = "test-service",
                 Tags = new[] { "test", "service" },
                 Address = "127.0.0.1",
                 Port = 80

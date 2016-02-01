@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         run: {
             consul: {
                 options: {
-                    quiet : true,
+                    quiet: true,
                     wait: false
                 },
                 exec: 'consul agent -server -bootstrap -data-dir ./consuldata -log-level=debug -http-port=' + process.env.CONSUL_AGENT_PORT + ' -dc=' + (process.env.CONSUL_CLIENT_DATACENTER_NAME || 'dc1')
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
             },
             pack: {
                 options: {
-                        cwd: '<%= const.appDir %>'
+                    cwd: '<%= const.appDir %>'
                 },
                 exec: 'dnu pack --framework <%= const.framework %> --configuration <%= const.config %>'
             }
@@ -103,8 +103,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('restore', ['run:restore']);
     grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
-    grunt.registerTask('unit-test', ['build', 'run:unittest']);
-    grunt.registerTask('int-test', ['build', 'run:consul', 'run:integrationtest']);
+    grunt.registerTask('unit-test', ['restore', 'build', 'run:unittest']);
+    grunt.registerTask('int-test', ['restore', 'build', 'run:consul', 'run:integrationtest']);
     grunt.registerTask('ct', ['unittest', 'watch']);
     grunt.registerTask('default', ['build']);
 };

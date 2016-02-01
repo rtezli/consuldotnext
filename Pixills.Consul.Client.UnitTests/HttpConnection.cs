@@ -25,16 +25,6 @@ namespace Pixills.Consul.Client.UnitTests
         }
 
         [Fact]
-        public void HttpConnection_Constructor_CallWithNullUrl_ShouldThrowException()
-        {
-            Assert.Throws<ArgumentException>(() =>
-            {
-                Environment.SetEnvironmentVariable("CONSUL_AGENT_HOSTNAME", null);
-                new Consul.Client.HttpConnection(_client, true, 5);
-            });
-        }
-
-        [Fact]
         public void HttpConnection_Constructor_CallWithNullClient_ShouldThrowException()
         {
             Assert.Throws<ArgumentException>(() =>

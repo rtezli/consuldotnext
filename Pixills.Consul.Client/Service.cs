@@ -8,7 +8,7 @@ namespace Pixills.Consul.Client
         public string Id { get; set; }
 
         [JsonProperty("Service")]
-        public string ServiceName { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("Tags")]
         public string[] Tags { get; set; }

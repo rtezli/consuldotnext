@@ -43,7 +43,7 @@ namespace Pixills.Consul.Client
                 Service = new
                 {
                     ID = service.Id,
-                    Service = service.ServiceName,
+                    Service = service.Name,
                     Tags = service.Tags,
                     Address = service.Address,
                     Port = service.Port

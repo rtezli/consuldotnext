@@ -1,7 +1,12 @@
 {
   "projects": [
     "Pixills.Consul.Client",
-    "Pixills.Consul.Client.Tests"
+    "Pixills.Consul.Client.UnitTests",
+    "Pixills.Consul.Client.IntegrationTests"
   ],
-  "sdk": "1.0.0-rc2-16177"
+  "sdk": {
+    "version": "1.0.0-rc1-update1",
+    "architecture": "x64",
+    "runtime": "coreclr"
+  }
 }

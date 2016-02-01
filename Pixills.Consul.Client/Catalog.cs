@@ -18,14 +18,10 @@ namespace Pixills.Consul.Client
             return _connection.Get<string[]>("/catalog/datacenters");
         }
 
-        public Task<Dictionary<string, string[]>> Services()
-        {
-            return _connection.Get<Dictionary<string, string[]>>("/catalog/services");
-        }
-
         public Task<Dictionary<string, string[]>> Services(string dataCenter = null)
         {
-            var address = $"/catalog/services{(dataCenter == null ? "" : WebUtility.UrlEncode(dataCenter))}";
+            var dc = string.IsNullOrWhiteSpace(dataCenter) ? "" : $"?dc={WebUtility.UrlEncode(dataCenter)}";
+            var address = $"/catalog/services{dc}";
             return _connection.Get<Dictionary<string, string[]>>(address);
         }
 
@@ -36,25 +32,21 @@ namespace Pixills.Consul.Client
 
         public Task<Service> Service(string name)
         {
-            var address = $"/catalog/service/{(WebUtility.UrlEncode(name))}";
+            var address = $"/catalog/service/{WebUtility.UrlEncode(name)}";
             return _connection.Get<Service>(address);
-        }
-
-        public Task<Nodes[]> Nodes()
-        {
-            return _connection.Get<Nodes[]>("/catalog/nodes");
-        }
-
-        public Task<Nodes[]> Nodes(string dataCenter)
-        {
-            var address = $"/catalog/nodes{(dataCenter == null ? "" : WebUtility.UrlEncode(dataCenter))}";
-            return _connection.Get<Nodes[]>(address);
         }
 
         public Task<Node> Node(string name)
         {
             var address = $"/catalog/node/{(WebUtility.UrlEncode(name))}";
             return _connection.Get<Node>(address);
+        }
+
+        public Task<Nodes[]> Nodes(string dataCenter = null)
+        {
+            var dc = string.IsNullOrWhiteSpace(dataCenter) ? "" : $"?dc={WebUtility.UrlEncode(dataCenter)}";
+            var address = $"/catalog/nodes{dc}";
+            return _connection.Get<Nodes[]>(address);
         }
     }
 }

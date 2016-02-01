@@ -2,7 +2,7 @@
   "profiles": {
     "build": {
       "commandName": "build",
-      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-beta8"
+      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-update1"
     }
   }
 }

@@ -1,6 +1,6 @@
 # consuldotnext [![Circle CI](https://circleci.com/gh/rtezli/consuldotnext.svg?style=svg)](https://circleci.com/gh/rtezli/consuldotnext)
 
-Consul client SDK for DNX
+Consul Catalog SDK for .NET Core
 
 ## Consul
 
@@ -9,6 +9,11 @@ Consul is a tool for service discovery and configuration. Consul is distributed,
 ## DNX
 
 The .NET Execution Environment (DNX) is a software development kit (SDK) and runtime environment that has everything you need to build and run .NET applications for Windows, Mac and Linux
+
+## consuldotnext
+
+consuldotnext does not implement the whole Consul functionality. Instead we focus on what is essential for querying a Consul agent from code i.e. performing service discovery in ASP.NET 6 referring to the [Consul catalog API](https://www.consul.io/docs/agent/http/catalog.html).
+When using consuldotnext you will still need to have a Consul agent running.
 
 ## Getting started
 
@@ -43,8 +48,18 @@ You can trigger the build manually by :
 
     grunt build
 
-## Test
+## Tests
+
+### Unit Tests
 
 You can trigger testing manually by :
 
-    grunt test
+    grunt unit-test
+
+### Integration Tests
+
+To run the integration tests you need to have Consul installed. There are binaries for the most operating system which can be downloaded [here](https://www.consul.io/downloads.html)
+
+To run the tests just call
+
+    grunt int-test
