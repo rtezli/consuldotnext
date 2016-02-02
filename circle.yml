@@ -13,7 +13,8 @@ machine:
     post:
         - sudo apt-get -qq update
         - sudo apt-get install -qqyf libunwind8 unzip
-        - curl -sSL https://releases.hashicorp.com/consul/0.6.3/consul_0.6.3_linux_amd64.zip | unzip -qq -d consul
+        - curl -sSL https://releases.hashicorp.com/consul/0.6.3/consul_0.6.3_linux_amd64.zip
+        - unzip consul_0.6.3_linux_amd64.zip -qq -d consul
         - sudo mv consul/consul /usr/bin
 #        - sudo apt-get install -qqyf mono-complete
 #        - mozroots --import --sync
