@@ -30,8 +30,8 @@ test:
     override:
         - grunt build
         - grunt unit-test
-        - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.dll $CIRCLE_ARTIFACTS
-        - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.nupkg $CIRCLE_ARTIFACTS
+#        - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.dll $CIRCLE_ARTIFACTS
+#        - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.nupkg $CIRCLE_ARTIFACTS
 #deployment:
 #    override:
 #        - grunt build

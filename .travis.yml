@@ -3,6 +3,8 @@ language: nodejs
 before_install:
     - npm install -g grunt-cli
     - sudo apt-get -qq update
+    - sudo echo "" >> /etc/apt/sources.list
+    - echo "deb http://de.archive.ubuntu.com/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list
     - sudo apt-get install -y libunwind8
 install:
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
