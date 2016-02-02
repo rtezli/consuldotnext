@@ -9,6 +9,9 @@ install:
     - source ~/.dnx/dnvm/dnvm.sh
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
+    - wget -q https://releases.hashicorp.com/consul/0.6.3/consul_0.6.3_linux_amd64.zip
+    - unzip -qq consul_0.6.3_linux_amd64.zip -d consul
+    - sudo mv consul/consul /usr/bin
     - npm install
 
 script: grunt unit-test

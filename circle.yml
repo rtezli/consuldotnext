@@ -8,7 +8,6 @@ machine:
         DNX_HOME: $HOME/.dnx
         DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
         PATH: $PATH:$DNX_BIN
-        MONO_THREADS_PER_CPU: 2000
         DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
     post:
         - sudo apt-get -qq update
