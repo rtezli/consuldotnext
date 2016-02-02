@@ -1,10 +1,9 @@
 env:
-- DB=postgres
-- DNX_ARCH=x64
-- DNX_RUNTIME=coreclr
-- DNX_VERSION=1.0.0-rc1-update1
-- DNX_HOME=$HOME/.dnx
-- DNX_BIN=$DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
+ - DNX_ARCH=x64
+ - DNX_RUNTIME=coreclr
+ - DNX_VERSION=1.0.0-rc1-update1
+ - DNX_HOME=$HOME/.dnx
+ - DNX_BIN=$DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
 
 language: csharp
 
@@ -13,11 +12,11 @@ sudo: false
 before_install: npm install -g grunt-cli
 
 install:
-- curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
-- source ~/.dnx/dnvm/dnvm.sh
-- dnvm upgrade
-- dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-- dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-- npm install
+ - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
+ - source ~/.dnx/dnvm/dnvm.sh
+ - dnvm upgrade
+ - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
+ - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
+ - npm install
 
 script: grunt unit-test
