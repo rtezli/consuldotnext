@@ -9,27 +9,15 @@ machine:
     MONO_THREADS_PER_CPU: 2000
     DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
   post:
-    - sudo apt-get -qq update
-    - sudo apt-get -qqy install unzip mono-devel autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
-    - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
-    - source dnvminstall.sh
-    - source /home/ubuntu/.dnx/dnvm/dnvm.sh
-    - mv ~/$CIRCLE_PROJECT_REPONAME/NuGet.config $HOME/.config/NuGet
-#    - sudo mv ~/$CIRCLE_PROJECT_REPONAME/dnu.config $DNX_BIN
-    - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-    - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-    - dnvm list
-    - dnvm alias default -Version $DNX_VERSION -Runtime $DNX_RUNTIME -Arch $DNX_ARCH
-    - ls $DNX_HOME/runtimes
-    - sudo ln -s /usr/bin $DNX_BIN
-    - sudo ldconfig
-    - sudo mozroots --import --sync
-    - mkdir -p $HOME/.config/NuGet
 dependencies:
   override:
+    - sudo apt-get -qq update
+    - sudo apt-get -qqy install libunwind8
+    - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
+    - source ~/.dnx/dnvm/dnvm.sh
+    - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
+    - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - npm install
 test:
   override:
-    - cat $HOME/.config/NuGet/NuGet.config
-    - grunt build
-    - grunt test
+    - grunt unit-test
