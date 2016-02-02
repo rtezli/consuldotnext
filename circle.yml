@@ -9,6 +9,8 @@ machine:
     MONO_THREADS_PER_CPU: 2000
     DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
   post:
+    - sudo apt-get -qq update
+    - sudo apt-get install -y libunwind8
 dependencies:
   override:
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
