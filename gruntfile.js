@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         'release': 'Release',
         'debug': 'Debug',
         'framework': 'dnxcore50',
-        'config': 'Debug'
+        'config': 'Release'
     };
 
     grunt.initConfig({
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
             binaries: {
                 files: [{
                     expand: true,
-                    src: ['<%= const.tmpDir %>/**/*.dll', '<%= const.tmpDir %>/**/*.pdb', '!<%= const.tmpDir %>/**/*Tests.dll', '<%= const.tmpDir %>/**/*.nupkg', '!<%= const.tmpDir %>/**/*.symbols.nupkg'],
+                    src: ['<%= const.appDir %>/bin/Release/**/*.dll', '<%= const.appDir %>/bin/Release/**/*.nupkg', '!<%= const.appDir %>/bin/Release/**/*.symbols.nupkg'],
                     dest: '<%= const.binDir %>',
                     flatten: true
                 }]
