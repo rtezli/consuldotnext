@@ -1,7 +1,5 @@
 language: nodejs
 
-sudo: false
-
 before_install:
     - npm install -g grunt-cli
     - sudo apt-get -qq update
