@@ -5,6 +5,8 @@ before_install:
     - sudo apt-get -qq update
     - echo "deb http://de.archive.ubuntu.com/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list
     - sudo apt-get install -y libunwind8
+    - mkdir -p $HOME/.config/NuGet
+    - cp NuGet.config $HOME/.config/NuGet
 install:
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
     - source ~/.dnx/dnvm/dnvm.sh
