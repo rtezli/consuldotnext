@@ -103,6 +103,12 @@ module.exports = function(grunt) {
                     force: true
                 },
                 src: ['<%= const.tmpDir %>']
+            },
+            consul: {
+                options: {
+                    force: true
+                },
+                src: ['./consuldata']
             }
         }
     });
@@ -110,7 +116,7 @@ module.exports = function(grunt) {
     grunt.registerTask('restore', ['run:restore']);
     grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:build_tests', 'run:pack', 'copy', 'clean:temp']);
     grunt.registerTask('unit-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_tests', 'run:unittest']);
-    grunt.registerTask('int-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_unit_tests','run:consul', 'run:integrationtest']);
+    grunt.registerTask('int-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_unit_tests','run:consul', 'run:integrationtest', 'clean:consul']);
     grunt.registerTask('ct', ['unittest', 'watch']);
     grunt.registerTask('default', ['build']);
 };
