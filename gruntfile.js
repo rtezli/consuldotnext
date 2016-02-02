@@ -114,9 +114,9 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('restore', ['run:restore']);
-    grunt.registerTask('build', ['clean:bin', 'run:build_app', 'run:pack', 'copy', 'clean:temp']);
-    grunt.registerTask('unit-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_unit_tests', 'run:unittest']);
-    grunt.registerTask('int-test', ['restore', 'clean:bin', 'run:build_app', 'run:build_int_tests','run:consul', 'run:integrationtest', 'clean:consul']);
+    grunt.registerTask('build', ['restore', 'clean:bin', 'run:build_app', 'run:pack', 'copy', 'clean:temp']);
+    grunt.registerTask('unit-test', ['run:build_unit_tests', 'run:unittest']);
+    grunt.registerTask('int-test', ['run:build_int_tests','run:consul', 'run:integrationtest', 'clean:consul']);
     grunt.registerTask('ct', ['unittest', 'watch']);
     grunt.registerTask('default', ['build']);
 };
