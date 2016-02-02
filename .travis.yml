@@ -1,12 +1,4 @@
-language: csharp
-
-env:
-    matrix:
-        - DNX_ARCH=x64
-        - DNX_RUNTIME=coreclr
-        - DNX_VERSION=1.0.0-rc1-update1
-        - DNX_HOME=$HOME/.dnx
-        - DNX_BIN=$DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
+language: nodejs
 
 sudo: false
 
