@@ -15,3 +15,7 @@ install:
     - npm install
 
 script: grunt unit-test
+
+deploy:
+    on:
+        tags: true
