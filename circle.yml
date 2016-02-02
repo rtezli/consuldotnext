@@ -7,7 +7,7 @@ machine:
     DNX_BIN: $DNX_HOME/runtimes/dnx-$DNX_RUNTIME-linux-$DNX_ARCH.$DNX_VERSION/bin
     PATH: $PATH:$DNX_BIN
     MONO_THREADS_PER_CPU: 2000
-    DNX_UNSTABLE_FEED=https://www.myget.org/F/aspnetmaster/api/v2/
+    DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
   post:
     - sudo apt-get -qq update
     - sudo apt-get -qqy install unzip mono-devel autoconf automake build-essential libtool libc6-dev libicu-dev sqlite3 libsqlite3-dev libssl-dev libunwind8 libunwind8-dev
