@@ -29,7 +29,6 @@ dependencies:
 test:
     override:
         - grunt build
-        - ls ~/$CIRCLE_PROJECT_REPONAME
         - grunt unit-test
         - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.dll $CIRCLE_ARTIFACTS
         - mv ~/$CIRCLE_PROJECT_REPONAME/bin/*.nupkg $CIRCLE_ARTIFACTS

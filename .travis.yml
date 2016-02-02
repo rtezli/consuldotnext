@@ -3,7 +3,8 @@ language: nodejs
 before_install:
     - npm install -g grunt-cli
     - sudo apt-get -qq update
-    - sudo apt-get install -y libunwind8
+    - sudo apt-get install -y libunwind8 add-apt-repository
+    - sudo add-apt-repository "deb http://de.archive.ubuntu.com/ubuntu trusty main"
 install:
     - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
     - source ~/.dnx/dnvm/dnvm.sh
@@ -13,9 +14,10 @@ install:
     - unzip -qq consul_0.6.3_linux_amd64.zip -d consul
     - sudo mv consul/consul /usr/bin
     - npm install
-
-script: grunt unit-test
-
-deploy:
-    on:
-        tags: true
+script:
+    - grunt build
+    - grunt unit-test
+    - mv
+#deploy:
+#    on:
+#        tags: true
