@@ -17,7 +17,6 @@ install:
 script:
     - grunt build
     - grunt unit-test
-    - mv
 #deploy:
 #    on:
 #        tags: true
