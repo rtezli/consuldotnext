@@ -11,9 +11,7 @@ machine:
   post:
 dependencies:
   override:
-    - sudo apt-get -qq update
-    - sudo apt-get -qqy install libunwind8
-    - wget -q https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
+    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
     - source ~/.dnx/dnvm/dnvm.sh
     - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
     - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
