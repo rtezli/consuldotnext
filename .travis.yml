@@ -4,13 +4,12 @@ sudo: false
 
 before_install:
     - npm install -g grunt-cli
-
-install:
-    - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh
-    - source ~/.dnx/dnvm/dnvm.sh
-    - dnvm upgrade
-    - dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-    - dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION
-    - npm install
+    - sudo apt-get -qq update
+    - sudo apt-get install -y libunwind8
+install: curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh && \
+         source ~/.dnx/dnvm/dnvm.sh && \
+         dnvm install -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION && \
+         dnvm use -r $DNX_RUNTIME -arch $DNX_ARCH $DNX_VERSION && \
+         npm install
 
 script: grunt unit-test
