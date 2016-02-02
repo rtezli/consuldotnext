@@ -12,12 +12,12 @@ machine:
         DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
     post:
         - sudo apt-get -qq update
-        - sudo apt-get install -y libunwind8 mono-complete unzip
+        - sudo apt-get install -qqyf libunwind8 mono-complete unzip
         - mozroots --import --sync
         - curl -sSL https://github.com/NuGet/Home/releases/download/3.3/NuGet.exe
         - nuget.exe --version
         - curl -sSL https://releases.hashicorp.com/consul/0.6.3/consul_0.6.3_linux_amd64.zip | unzip -qq -d consul
-        - sudo mv consul/consul /usr/bin 
+        - sudo mv consul/consul /usr/bin
 dependencies:
     override:
         - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | sh

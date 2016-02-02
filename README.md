@@ -1,4 +1,4 @@
-# consuldotnext [![Build Status](https://travis-ci.org/rtezli/consuldotnext.svg?branch=master)](https://travis-ci.org/rtezli/consuldotnext)
+# consuldotnext [![Circle CI](https://circleci.com/gh/rtezli/consuldotnext/tree/master.svg?style=svg)](https://circleci.com/gh/rtezli/consuldotnext/tree/master)
 
 Consul Catalog SDK for .NET Core
 
