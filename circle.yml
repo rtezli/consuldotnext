@@ -10,6 +10,7 @@ machine:
         PATH: $PATH:$DNX_BIN
         DNX_UNSTABLE_FEED: https://www.myget.org/F/aspnetmaster/api/v2/
     post:
+        - uname -a
         - sudo apt-get -qq update
         - sudo apt-get install -y libunwind8 unzip
         - wget -q https://releases.hashicorp.com/consul/0.6.3/consul_0.6.3_linux_amd64.zip
